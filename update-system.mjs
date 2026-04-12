@@ -19,71 +19,16 @@ import { execFileSync, execSync } from 'child_process';
 import { readFileSync, writeFileSync, existsSync, unlinkSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import {
+  CANONICAL_REPO,
+  RAW_VERSION_URL,
+  RELEASES_API,
+  SYSTEM_PATHS,
+  USER_PATHS,
+} from './system-boundaries.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = __dirname;
-
-const CANONICAL_REPO = 'https://github.com/santifer/career-ops.git';
-const RAW_VERSION_URL = 'https://raw.githubusercontent.com/santifer/career-ops/main/VERSION';
-const RELEASES_API = 'https://api.github.com/repos/santifer/career-ops/releases/latest';
-
-// System layer paths — ONLY these files get updated
-const SYSTEM_PATHS = [
-  'modes/_shared.md',
-  'modes/_profile.template.md',
-  'modes/oferta.md',
-  'modes/pdf.md',
-  'modes/scan.md',
-  'modes/batch.md',
-  'modes/apply.md',
-  'modes/auto-pipeline.md',
-  'modes/contacto.md',
-  'modes/deep.md',
-  'modes/ofertas.md',
-  'modes/pipeline.md',
-  'modes/project.md',
-  'modes/tracker.md',
-  'modes/training.md',
-  'modes/de/',
-  'CLAUDE.md',
-  'AGENTS.md',
-  'generate-pdf.mjs',
-  'merge-tracker.mjs',
-  'verify-pipeline.mjs',
-  'dedup-tracker.mjs',
-  'normalize-statuses.mjs',
-  'cv-sync-check.mjs',
-  'update-system.mjs',
-  'batch/batch-prompt.md',
-  'batch/batch-runner.sh',
-  'dashboard/',
-  'templates/',
-  'fonts/',
-  '.claude/skills/',
-  'docs/',
-  'VERSION',
-  'DATA_CONTRACT.md',
-  'CONTRIBUTING.md',
-  'README.md',
-  'LICENSE',
-  'CITATION.cff',
-  '.github/',
-  'package.json',
-];
-
-// User layer paths — NEVER touch these (safety check)
-const USER_PATHS = [
-  'cv.md',
-  'config/profile.yml',
-  'modes/_profile.md',
-  'portals.yml',
-  'article-digest.md',
-  'interview-prep/story-bank.md',
-  'data/',
-  'reports/',
-  'output/',
-  'jds/',
-];
 
 function localVersion() {
   const vPath = join(ROOT, 'VERSION');

@@ -7,6 +7,12 @@ Modo interactivo para cuando el candidato está rellenando un formulario de apli
 - **Mejor con Playwright visible**: En modo visible, el candidato ve el navegador y Claude puede interactuar con la página.
 - **Sin Playwright**: el candidato comparte un screenshot o pega las preguntas manualmente.
 
+## Límite de seguridad
+
+- **NUNCA** hacer click en `Submit`, `Send`, `Apply`, `Enviar` o cualquier control equivalente.
+- Este modo se limita a leer el formulario y redactar respuestas listas para **copy-paste**.
+- El candidato siempre revisa y envía la aplicación manualmente.
+
 ## Workflow
 
 ```
